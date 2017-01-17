@@ -6,10 +6,13 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.eclipse.swt.widgets.MessageBox;
+
 public class Server {
 	public static void main(String[] args) {
 		Database d = new Database();
 		String temp = "";
+		Boolean controllo = true;
 
 		// Avvio il server
 		ServerSocket ss;
@@ -22,7 +25,12 @@ public class Server {
 				BufferedReader in = new BufferedReader(isr);
 				temp = in.readLine();
 				System.out.println("Il server riceve: " + temp);
-				d.Iscritto(temp);
+				controllo = d.Iscritto(temp);
+				if(controllo) {
+					System.out.println("Prenotazione effettuata con successo.");
+				} else {
+					System.out.println("Nickname già presente.");
+				}
 				s.close();
 				// riparta
 			}
