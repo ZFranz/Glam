@@ -52,7 +52,7 @@ public class Database {
 			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/glam?user=root&password=");
 
 			// ________________________________query
-			sql = "SELECT * FROM prenotazionei;";
+			sql = "SELECT * FROM prenotazione;";
 			System.out.println(sql); // stampa la query
 
 			st = cn.createStatement(); // creo sempre uno statement sulla
