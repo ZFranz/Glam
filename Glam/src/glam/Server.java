@@ -8,6 +8,7 @@ import java.net.Socket;
 
 public class Server {
 	public static void main(String[] args) {
+		Database d = new Database();
 		String temp = "";
 
 		// Avvio il server
@@ -21,6 +22,7 @@ public class Server {
 				BufferedReader in = new BufferedReader(isr);
 				temp = in.readLine();
 				System.out.println("Il server riceve: " + temp);
+				d.Iscritto(temp);
 				s.close();
 				// riparta
 			}
