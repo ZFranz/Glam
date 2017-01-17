@@ -66,14 +66,15 @@ public class Client {
 			public void widgetSelected(SelectionEvent e) {
 				// Invia dati al server
 				try {
-					Socket s = new Socket("172.16.6.5", 9999);
+					Socket s = new Socket("localhost", 9999);
+					//Socket s = new Socket("172.16.6.5", 9999);
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-					out.println("ciao " + Math.random());
+					out.println(text.getText());
 
 					// riceva del testo
-					InputStreamReader isr = new InputStreamReader(s.getInputStream());
+					/*InputStreamReader isr = new InputStreamReader(s.getInputStream());
 					BufferedReader in = new BufferedReader(isr);
-					System.out.println("Il client riceve: " + in.readLine());
+					System.out.println("Il client riceve: " + in.readLine());*/
 
 					s.close();
 				} catch (IOException e1) {

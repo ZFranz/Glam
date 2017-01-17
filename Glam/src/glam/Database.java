@@ -3,7 +3,7 @@ package glam;
 import java.sql.*;
 
 public class Database {
-	public void Iscritto(String nome) {
+	public void Iscritto(String nickname) {
 		Connection cn;
 		Statement st;
 		String sql;
@@ -18,10 +18,10 @@ public class Database {
 
 		try {
 			// Creo la connessione al database
-			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/glam?user=root&password=");
 
 			// ________________________________query
-			sql = "INSERT INTO prenotazione (nome) VALUES ('" + nome + "');";
+			sql = "INSERT INTO prenotazione (nickname) VALUES ('" + nickname + "');";
 			System.out.println(sql);
 
 			st = cn.createStatement(); // creo sempre uno statement sulla

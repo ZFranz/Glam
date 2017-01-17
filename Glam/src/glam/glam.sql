@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `prenotazione` (
   `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
+  `nickname` varchar(100) NOT NULL,
   `data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
