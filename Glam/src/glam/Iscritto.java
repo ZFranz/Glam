@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Iscritto {
 	String nickname = "";
-	Date data;
+	String data;
 
-	public Iscritto(String nickname, Date data) {
+	public Iscritto(String nickname, String data) {
 		super();
 		this.nickname = nickname;
 		this.data = data;
@@ -20,11 +20,11 @@ public class Iscritto {
 		this.nickname = nickname;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

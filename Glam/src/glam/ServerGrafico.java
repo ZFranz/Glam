@@ -25,7 +25,7 @@ public class ServerGrafico {
 	private Table table;
 	private ArrayList<Iscritto> iscritto = new ArrayList<Iscritto>();
 	private Database d = new Database();
-	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+	DateFormat df = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 	/**
 	 * Launch the application.
 	 * @param args
@@ -63,7 +63,7 @@ public class ServerGrafico {
 		shell.setText("SWT Application");
 		
 		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setBounds(71, 55, 201, 155);
+		table.setBounds(71, 55, 322, 155);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 		
@@ -72,7 +72,7 @@ public class ServerGrafico {
 		tblclmnNomi.setText("Nomi");
 		
 		TableColumn tblclmnData = new TableColumn(table, SWT.NONE);
-		tblclmnData.setWidth(100);
+		tblclmnData.setWidth(210);
 		tblclmnData.setText("Data");
 		
 		Button btnNewButton = new Button(shell, SWT.NONE);
@@ -83,8 +83,8 @@ public class ServerGrafico {
 				for(int i=0; i<iscritto.size(); i++){
 					TableItem tableItem = new TableItem (table, SWT.NONE);
 					tableItem.setText(0, iscritto.get(i).getNickname());
-					String temp = df.format(iscritto.get(i).getData());
-					tableItem.setText(1, temp);
+					//String temp = df.format(iscritto.get(i).getData());
+					tableItem.setText(1, iscritto.get(i).getData());
 				}
 			}
 		});
