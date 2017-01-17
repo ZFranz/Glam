@@ -83,8 +83,8 @@ public class ServerGrafico {
 				for(int i=0; i<iscritto.size(); i++){
 					TableItem tableItem = new TableItem (table, SWT.NONE);
 					tableItem.setText(0, iscritto.get(i).getNickname());
-					//String temp = df.format(iscritto.get(i).getData());
-					tableItem.setText(1, iscritto.get(i).getData());
+					String temp = df.format(iscritto.get(i).getData());
+					tableItem.setText(1, temp);
 				}
 			}
 		});

@@ -31,7 +31,7 @@ public class Database {
 										// connessione
 			rs = st.executeQuery(sql); // faccio la query su uno statement
 			while (rs.next() == true) {
-				Iscritto i = new Iscritto(rs.getString("nickname"), rs.getString("data"));
+				Iscritto i = new Iscritto(rs.getString("nickname"), rs.getTimestamp("data"));
 				System.out.println(i);
 				elenco.add(i);
 			}
@@ -100,7 +100,7 @@ public class Database {
 										// connessione
 			rs = st.executeQuery(sql); // faccio la query su uno statement
 			while (rs.next() == true) {
-				Iscritto i = new Iscritto(rs.getString("nickname"), rs.getString("data"));
+				Iscritto i = new Iscritto(rs.getString("nickname"), rs.getTimestamp("data"));
 				System.out.println(i);
 				elenco.add(i);
 			}
