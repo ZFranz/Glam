@@ -5,10 +5,16 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
+
+import com.mysql.fabric.xmlrpc.base.Data;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -19,6 +25,7 @@ public class ServerGrafico {
 	private Table table;
 	private ArrayList<Iscritto> iscritto = new ArrayList<Iscritto>();
 	private Database d = new Database();
+	DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 	/**
 	 * Launch the application.
 	 * @param args
@@ -73,6 +80,12 @@ public class ServerGrafico {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				iscritto = d.listaIscritti();
+				for(int i=0; i<iscritto.size(); i++){
+					TableItem tableItem = new TableItem (table, SWT.NONE);
+					tableItem.setText(0, iscritto.get(i).getNickname());
+					String temp = df.format(iscritto.get(i).getData());
+					tableItem.setText(1, temp);
+				}
 			}
 		});
 		btnNewButton.setBounds(10, 10, 75, 25);
