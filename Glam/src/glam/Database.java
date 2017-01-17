@@ -75,7 +75,7 @@ public class Database {
 		return true;
 	}
 	
-	public ArrayList<Iscritto> listaIscrittii() {
+	public ArrayList<Iscritto> listaIscritti() {
 		ArrayList<Iscritto> elenco = new ArrayList<Iscritto>();
 		Connection cn;
 		Statement st;
