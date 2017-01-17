@@ -2,11 +2,23 @@ package glam;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class ServerGrafico {
 
 	protected Shell shell;
-
+	private Table table;
+	private ArrayList<Iscritto> iscritto = new ArrayList<Iscritto>();
+	private Database d = new Database();
 	/**
 	 * Launch the application.
 	 * @param args
@@ -42,7 +54,32 @@ public class ServerGrafico {
 		shell = new Shell();
 		shell.setSize(450, 300);
 		shell.setText("SWT Application");
+		
+		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
+		table.setBounds(71, 55, 201, 155);
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+		
+		TableColumn tblclmnNomi = new TableColumn(table, SWT.NONE);
+		tblclmnNomi.setWidth(94);
+		tblclmnNomi.setText("Nomi");
+		
+		TableColumn tblclmnData = new TableColumn(table, SWT.NONE);
+		tblclmnData.setWidth(100);
+		tblclmnData.setText("Data");
+		
+		Button btnNewButton = new Button(shell, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				iscritto = d.listaIscritti();
+			}
+		});
+		btnNewButton.setBounds(10, 10, 75, 25);
+		btnNewButton.setText("New Button");
+		
+		
+		
 
 	}
-
 }
