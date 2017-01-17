@@ -49,10 +49,10 @@ public class Database {
 		} // fine try-catch
 
 		try {
-			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/glam?user=root&password=");
 
 			// ________________________________query
-			sql = "SELECT * FROM soci;";
+			sql = "SELECT * FROM prenotazionei;";
 			System.out.println(sql); // stampa la query
 
 			st = cn.createStatement(); // creo sempre uno statement sulla
