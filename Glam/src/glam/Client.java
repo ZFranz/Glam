@@ -14,11 +14,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Label;
 
 public class Client {
 
 	protected Shell shell;
 	private Text text;
+	private Label lblNome;
 
 	/**
 	 * Launch the application.
@@ -58,7 +60,7 @@ public class Client {
 		shell.setText("SWT Application");
 
 		text = new Text(shell, SWT.BORDER);
-		text.setBounds(10, 10, 76, 21);
+		text.setBounds(65, 10, 112, 21);
 
 		Button btnNewButton = new Button(shell, SWT.NONE);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
@@ -66,8 +68,7 @@ public class Client {
 			public void widgetSelected(SelectionEvent e) {
 				// Invia dati al server
 				try {
-					Socket s = new Socket("localhost", 9999);
-					//Socket s = new Socket("172.16.6.5", 9999);
+					Socket s = new Socket("172.16.6.5", 9999);
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 					out.println(text.getText());
 
@@ -83,8 +84,12 @@ public class Client {
 				}
 			}
 		});
-		btnNewButton.setBounds(115, 10, 75, 25);
-		btnNewButton.setText("New Button");
+		btnNewButton.setBounds(216, 8, 75, 25);
+		btnNewButton.setText("Invia");
+		
+		lblNome = new Label(shell, SWT.NONE);
+		lblNome.setBounds(10, 13, 55, 15);
+		lblNome.setText("Nome:");
 
 	}
 
