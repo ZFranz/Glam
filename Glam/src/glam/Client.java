@@ -15,12 +15,15 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Client {
 
-	protected Shell shell;
+	protected Shell shlRegistarti;
 	private Text text;
-	private Label lblNome;
+	private Label lblNickname;
+	private Label lblResult;
 
 	/**
 	 * Launch the application.
@@ -42,9 +45,9 @@ public class Client {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
+		shlRegistarti.open();
+		shlRegistarti.layout();
+		while (!shlRegistarti.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -55,27 +58,40 @@ public class Client {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shell = new Shell();
-		shell.setSize(450, 300);
-		shell.setText("SWT Application");
+		shlRegistarti = new Shell();
+		shlRegistarti.setSize(400, 380);
+		shlRegistarti.setText("Registati");
 
-		text = new Text(shell, SWT.BORDER);
-		text.setBounds(65, 10, 112, 21);
+		text = new Text(shlRegistarti, SWT.BORDER);
+		text.setBounds(84, 10, 209, 21);
+		
+		lblNickname = new Label(shlRegistarti, SWT.NONE);
+		lblNickname.setBounds(10, 13, 68, 15);
+		lblNickname.setText("Nickname:");
+		
+		Label lblImage = new Label(shlRegistarti, SWT.NONE);
+		lblImage.setImage(SWTResourceManager.getImage("img\\papagayo.jpeg"));
+		lblImage.setBounds(10, 92, 364, 240);
+		
+		lblResult = new Label(shlRegistarti, SWT.NONE);
+		lblResult.setBounds(10, 47, 364, 15);
 
-		Button btnNewButton = new Button(shell, SWT.NONE);
+		Button btnNewButton = new Button(shlRegistarti, SWT.NONE);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// Invia dati al server
 				try {
-					Socket s = new Socket("172.16.6.5", 9999);
+					Socket s = new Socket("localhost", 9999);
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 					out.println(text.getText());
 
 					// riceva del testo
-					/*InputStreamReader isr = new InputStreamReader(s.getInputStream());
+					InputStreamReader isr = new InputStreamReader(s.getInputStream());
 					BufferedReader in = new BufferedReader(isr);
-					System.out.println("Il client riceve: " + in.readLine());*/
+					String temp = in.readLine();
+					System.out.println("Il client riceve: " + temp);
+					lblResult.setText(temp);
 
 					s.close();
 				} catch (IOException e1) {
@@ -84,13 +100,10 @@ public class Client {
 				}
 			}
 		});
-		btnNewButton.setBounds(216, 8, 75, 25);
+		btnNewButton.setBounds(299, 8, 75, 25);
 		btnNewButton.setText("Invia");
 		
-		lblNome = new Label(shell, SWT.NONE);
-		lblNome.setBounds(10, 13, 55, 15);
-		lblNome.setText("Nome:");
+		
 
 	}
-
 }

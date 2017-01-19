@@ -21,7 +21,7 @@ import org.eclipse.swt.events.SelectionEvent;
 
 public class ServerGrafico {
 
-	protected Shell shell;
+	protected Shell shlPrenotati;
 	private Table table;
 	private ArrayList<Iscritto> iscritto = new ArrayList<Iscritto>();
 	private Database d = new Database();
@@ -45,9 +45,9 @@ public class ServerGrafico {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
+		shlPrenotati.open();
+		shlPrenotati.layout();
+		while (!shlPrenotati.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -58,12 +58,12 @@ public class ServerGrafico {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shell = new Shell();
-		shell.setSize(450, 300);
-		shell.setText("SWT Application");
+		shlPrenotati = new Shell();
+		shlPrenotati.setSize(260, 300);
+		shlPrenotati.setText("Prenotati");
 		
-		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setBounds(71, 55, 322, 155);
+		table = new Table(shlPrenotati, SWT.BORDER | SWT.FULL_SELECTION);
+		table.setBounds(10, 41, 225, 155);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 		
@@ -72,11 +72,11 @@ public class ServerGrafico {
 		tblclmnNomi.setText("Nomi");
 		
 		TableColumn tblclmnData = new TableColumn(table, SWT.NONE);
-		tblclmnData.setWidth(210);
+		tblclmnData.setWidth(125);
 		tblclmnData.setText("Data");
 		
-		Button btnNewButton = new Button(shell, SWT.NONE);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
+		Button btnVisualizza = new Button(shlPrenotati, SWT.NONE);
+		btnVisualizza.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				iscritto = d.listaIscritti();
@@ -88,8 +88,8 @@ public class ServerGrafico {
 				}
 			}
 		});
-		btnNewButton.setBounds(10, 10, 75, 25);
-		btnNewButton.setText("New Button");
+		btnVisualizza.setBounds(10, 10, 225, 25);
+		btnVisualizza.setText("Visualizza prenotati");
 		
 		
 		

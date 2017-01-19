@@ -3,6 +3,7 @@ package glam;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -26,10 +27,11 @@ public class Server {
 				temp = in.readLine();
 				System.out.println("Il server riceve: " + temp);
 				controllo = d.Iscritto(temp);
+				PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 				if(controllo) {
-					System.out.println("Prenotazione effettuata con successo.");
+					out.println("Prenotazione effettuata con successo.");
 				} else {
-					System.out.println("Nickname già presente.");
+					out.println("Utente già registrato.");
 				}
 				s.close();
 				// riparta
