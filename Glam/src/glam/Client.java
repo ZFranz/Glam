@@ -66,6 +66,7 @@ public class Client {
 		text.setBounds(84, 10, 209, 21);
 		
 		lblNickname = new Label(shlRegistarti, SWT.NONE);
+		lblNickname.setFont(SWTResourceManager.getFont("Tekton Pro Ext", 9, SWT.NORMAL));
 		lblNickname.setBounds(10, 13, 68, 15);
 		lblNickname.setText("Nickname:");
 		
@@ -77,6 +78,7 @@ public class Client {
 		lblResult.setBounds(10, 47, 364, 15);
 
 		Button btnNewButton = new Button(shlRegistarti, SWT.NONE);
+		btnNewButton.setFont(SWTResourceManager.getFont("Tekton Pro Ext", 9, SWT.NORMAL));
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

@@ -114,7 +114,7 @@ public class Database {
 		return elenco;
 	}
 	
-	public ArrayList<Iscritto> listaIscrittiFiltro(String ora1, String ora2) {
+	public ArrayList<Iscritto> listaIscrittiFiltro(String giorno1, String giorno2, String ora1, String ora2) {
 		ArrayList<Iscritto> elenco = new ArrayList<Iscritto>();
 		Connection cn;
 		Statement st;
@@ -132,7 +132,7 @@ public class Database {
 			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/glam?user=root&password=");
 
 			// ________________________________query
-			sql = "SELECT * FROM prenotazione;";
+			sql = "SELECT * FROM prenotazione WHERE data>='" + giorno1 +" " + ora1 + "' AND data<='" + giorno2 +" " + ora2 + "'; ";
 			System.out.println(sql); // stampa la query
 
 			st = cn.createStatement(); // creo sempre uno statement sulla
