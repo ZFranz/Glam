@@ -113,4 +113,43 @@ public class Database {
 
 		return elenco;
 	}
+	
+	public ArrayList<Iscritto> listaIscrittiFiltro(String ora1, String ora2) {
+		ArrayList<Iscritto> elenco = new ArrayList<Iscritto>();
+		Connection cn;
+		Statement st;
+		ResultSet rs;
+		String sql;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("ClassNotFoundException: ");
+			System.err.println(e.getMessage());
+		} // fine try-catch
+
+		try {
+			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/glam?user=root&password=");
+
+			// ________________________________query
+			sql = "SELECT * FROM prenotazione;";
+			System.out.println(sql); // stampa la query
+
+			st = cn.createStatement(); // creo sempre uno statement sulla
+										// connessione
+			rs = st.executeQuery(sql); // faccio la query su uno statement
+			while (rs.next() == true) {
+				Iscritto i = new Iscritto(rs.getString("nickname"), rs.getTimestamp("data"));
+				System.out.println(i);
+				elenco.add(i);
+			}
+
+			cn.close(); // chiusura connessione
+		} catch (SQLException e) {
+			System.out.println("errore:" + e.getMessage());
+			e.printStackTrace();
+		} // fine try-catch
+
+		return elenco;
+	}
 }
